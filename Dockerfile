@@ -21,28 +21,28 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositorie
 ENTRYPOINT ["/bin/bash", "-l"]
 
 # OpenCV
-ENV OPENCV_VERSION=3.4.2
-RUN wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip && \
-  unzip ${OPENCV_VERSION}.zip && \
-  rm -rf ${OPENCV_VERSION}.zip && \
-  mkdir -p /opt/opencv-${OPENCV_VERSION}/build && \
-  cd /opt/opencv-${OPENCV_VERSION}/build && \
-  cmake \
-    -D CMAKE_BUILD_TYPE=RELEASE \
-    -D CMAKE_INSTALL_PREFIX=/usr/local \
-    -D WITH_FFMPEG=NO \
-    -D WITH_IPP=NO \
-    -D WITH_OPENEXR=NO \
-    -D WITH_TBB=NO \
-    -D BUILD_EXAMPLES=NO \
-    -D BUILD_ANDROID_EXAMPLES=NO \
-    -D INSTALL_PYTHON_EXAMPLES=NO \
-    -D BUILD_DOCS=NO \
-    -D BUILD_opencv_python2=NO \
-    -D BUILD_opencv_python3=NO \
-  .. && \
-  make -j$(nproc) && make install && \
-  rm -rf /opt/opencv-${OPENCV_VERSION}
+# ENV OPENCV_VERSION=3.4.2
+# RUN wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip && \
+#   unzip ${OPENCV_VERSION}.zip && \
+#   rm -rf ${OPENCV_VERSION}.zip && \
+#   mkdir -p /opt/opencv-${OPENCV_VERSION}/build && \
+#   cd /opt/opencv-${OPENCV_VERSION}/build && \
+#   cmake \
+#     -D CMAKE_BUILD_TYPE=RELEASE \
+#     -D CMAKE_INSTALL_PREFIX=/usr/local \
+#     -D WITH_FFMPEG=NO \
+#     -D WITH_IPP=NO \
+#     -D WITH_OPENEXR=NO \
+#     -D WITH_TBB=NO \
+#     -D BUILD_EXAMPLES=NO \
+#     -D BUILD_ANDROID_EXAMPLES=NO \
+#     -D INSTALL_PYTHON_EXAMPLES=NO \
+#     -D BUILD_DOCS=NO \
+#     -D BUILD_opencv_python2=NO \
+#     -D BUILD_opencv_python3=NO \
+#   .. && \
+#   make -j$(nproc) && make install && \
+#   rm -rf /opt/opencv-${OPENCV_VERSION}
 
 # zimg
 RUN git clone https://github.com/sekrit-twc/zimg.git && \
